@@ -1,0 +1,181 @@
+2021-05-31 15:42:38 [127.0.0.1][-][-][error][yii\base\InvalidConfigException] ReflectionException: Class yii\debug\Module does not exist in /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/di/Container.php:447
+Stack trace:
+#0 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/di/Container.php(447): ReflectionClass->__construct()
+#1 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/di/Container.php(374): yii\di\Container->getDependencies()
+#2 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/di/Container.php(159): yii\di\Container->build()
+#3 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/BaseYii.php(365): yii\di\Container->get()
+#4 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/base/Module.php(427): yii\BaseYii::createObject()
+#5 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/base/Application.php(315): yii\base\Module->getModule()
+#6 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/web/Application.php(69): yii\base\Application->bootstrap()
+#7 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/base/Application.php(273): yii\web\Application->bootstrap()
+#8 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/base/BaseObject.php(109): yii\base\Application->init()
+#9 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/base/Application.php(206): yii\base\BaseObject->__construct()
+#10 /home/ruslan/www/test-covid/project/web/index.php(12): yii\base\Application->__construct()
+#11 {main}
+
+Next yii\base\InvalidConfigException: Failed to instantiate component or class "yii\debug\Module". in /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/di/Container.php:449
+Stack trace:
+#0 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/di/Container.php(374): yii\di\Container->getDependencies()
+#1 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/di/Container.php(159): yii\di\Container->build()
+#2 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/BaseYii.php(365): yii\di\Container->get()
+#3 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/base/Module.php(427): yii\BaseYii::createObject()
+#4 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/base/Application.php(315): yii\base\Module->getModule()
+#5 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/web/Application.php(69): yii\base\Application->bootstrap()
+#6 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/base/Application.php(273): yii\web\Application->bootstrap()
+#7 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/base/BaseObject.php(109): yii\base\Application->init()
+#8 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/base/Application.php(206): yii\base\BaseObject->__construct()
+#9 /home/ruslan/www/test-covid/project/web/index.php(12): yii\base\Application->__construct()
+#10 {main}
+2021-05-31 15:42:38 [127.0.0.1][-][-][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = []
+
+$_SERVER = [
+    'USER' => 'www-data'
+    'HOME' => '/var/www'
+    'HTTP_ACCEPT_LANGUAGE' => 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_HOST' => 'test-covid.loc'
+    'SCRIPT_FILENAME' => '/home/ruslan/www/test-covid/project/web/index.php'
+    'REDIRECT_STATUS' => '200'
+    'SERVER_NAME' => 'test-covid.loc'
+    'SERVER_PORT' => '80'
+    'SERVER_ADDR' => '127.0.0.1'
+    'REMOTE_PORT' => '34596'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'SERVER_SOFTWARE' => 'nginx/1.20.0'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'REQUEST_SCHEME' => 'http'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'DOCUMENT_ROOT' => '/home/ruslan/www/test-covid/project/web'
+    'DOCUMENT_URI' => '/index.php'
+    'REQUEST_URI' => '/'
+    'SCRIPT_NAME' => '/index.php'
+    'CONTENT_LENGTH' => ''
+    'CONTENT_TYPE' => ''
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'FCGI_ROLE' => 'RESPONDER'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1622475757.9897
+    'REQUEST_TIME' => 1622475757
+]
+2021-05-31 15:48:08 [127.0.0.1][-][-][error][yii\db\Exception] PDOException: SQLSTATE[HY000] [1045] Access denied for user ''@'localhost' (using password: NO) in /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/db/Connection.php:705
+Stack trace:
+#0 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/db/Connection.php(705): PDO->__construct()
+#1 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/db/Connection.php(626): yii\db\Connection->createPdoInstance()
+#2 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/db/Connection.php(1022): yii\db\Connection->open()
+#3 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/db/Connection.php(1009): yii\db\Connection->getMasterPdo()
+#4 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/db/mysql/QueryBuilder.php(406): yii\db\Connection->getSlavePdo()
+#5 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/db/mysql/QueryBuilder.php(430): yii\db\mysql\QueryBuilder->supportsFractionalSeconds()
+#6 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/db/mysql/QueryBuilder.php(59): yii\db\mysql\QueryBuilder->defaultTimeTypeMap()
+#7 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/base/BaseObject.php(109): yii\db\mysql\QueryBuilder->init()
+#8 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/db/QueryBuilder.php(116): yii\base\BaseObject->__construct()
+#9 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/db/mysql/Schema.php(217): yii\db\QueryBuilder->__construct()
+#10 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/db/Schema.php(248): yii\db\mysql\Schema->createQueryBuilder()
+#11 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/db/Connection.php(856): yii\db\Schema->getQueryBuilder()
+#12 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/db/Query.php(157): yii\db\Connection->getQueryBuilder()
+#13 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/db/Query.php(318): yii\db\Query->createCommand()
+#14 /home/ruslan/www/test-covid/project/vendor/webvimark/module-user-management/models/rbacDB/Route.php(254): yii\db\Query->column()
+#15 /home/ruslan/www/test-covid/project/vendor/webvimark/module-user-management/models/rbacDB/Route.php(229): webvimark\modules\UserManagement\models\rbacDB\Route::isInCommonPermission()
+#16 /home/ruslan/www/test-covid/project/vendor/webvimark/module-user-management/components/GhostAccessControl.php(45): webvimark\modules\UserManagement\models\rbacDB\Route::isFreeAccess()
+#17 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/base/ActionFilter.php(77): webvimark\modules\UserManagement\components\GhostAccessControl->beforeAction()
+#18 [internal function]: yii\base\ActionFilter->beforeFilter()
+#19 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/base/Component.php(627): call_user_func()
+#20 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/base/Controller.php(276): yii\base\Component->trigger()
+#21 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/web/Controller.php(188): yii\base\Controller->beforeAction()
+#22 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/base/Controller.php(155): yii\web\Controller->beforeAction()
+#23 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/base/Module.php(528): yii\base\Controller->runAction()
+#24 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction()
+#25 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest()
+#26 /home/ruslan/www/test-covid/project/web/index.php(12): yii\base\Application->run()
+#27 {main}
+
+Next yii\db\Exception: SQLSTATE[HY000] [1045] Access denied for user ''@'localhost' (using password: NO) in /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/db/Connection.php:637
+Stack trace:
+#0 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/db/Connection.php(1022): yii\db\Connection->open()
+#1 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/db/Connection.php(1009): yii\db\Connection->getMasterPdo()
+#2 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/db/mysql/QueryBuilder.php(406): yii\db\Connection->getSlavePdo()
+#3 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/db/mysql/QueryBuilder.php(430): yii\db\mysql\QueryBuilder->supportsFractionalSeconds()
+#4 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/db/mysql/QueryBuilder.php(59): yii\db\mysql\QueryBuilder->defaultTimeTypeMap()
+#5 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/base/BaseObject.php(109): yii\db\mysql\QueryBuilder->init()
+#6 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/db/QueryBuilder.php(116): yii\base\BaseObject->__construct()
+#7 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/db/mysql/Schema.php(217): yii\db\QueryBuilder->__construct()
+#8 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/db/Schema.php(248): yii\db\mysql\Schema->createQueryBuilder()
+#9 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/db/Connection.php(856): yii\db\Schema->getQueryBuilder()
+#10 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/db/Query.php(157): yii\db\Connection->getQueryBuilder()
+#11 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/db/Query.php(318): yii\db\Query->createCommand()
+#12 /home/ruslan/www/test-covid/project/vendor/webvimark/module-user-management/models/rbacDB/Route.php(254): yii\db\Query->column()
+#13 /home/ruslan/www/test-covid/project/vendor/webvimark/module-user-management/models/rbacDB/Route.php(229): webvimark\modules\UserManagement\models\rbacDB\Route::isInCommonPermission()
+#14 /home/ruslan/www/test-covid/project/vendor/webvimark/module-user-management/components/GhostAccessControl.php(45): webvimark\modules\UserManagement\models\rbacDB\Route::isFreeAccess()
+#15 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/base/ActionFilter.php(77): webvimark\modules\UserManagement\components\GhostAccessControl->beforeAction()
+#16 [internal function]: yii\base\ActionFilter->beforeFilter()
+#17 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/base/Component.php(627): call_user_func()
+#18 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/base/Controller.php(276): yii\base\Component->trigger()
+#19 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/web/Controller.php(188): yii\base\Controller->beforeAction()
+#20 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/base/Controller.php(155): yii\web\Controller->beforeAction()
+#21 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/base/Module.php(528): yii\base\Controller->runAction()
+#22 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction()
+#23 /home/ruslan/www/test-covid/project/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest()
+#24 /home/ruslan/www/test-covid/project/web/index.php(12): yii\base\Application->run()
+#25 {main}
+Additional Information:
+Array
+(
+    [0] => HY000
+    [1] => 1045
+    [2] => Access denied for user ''@'localhost' (using password: NO)
+)
+
+2021-05-31 15:48:08 [127.0.0.1][-][-][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = []
+
+$_SERVER = [
+    'USER' => 'www-data'
+    'HOME' => '/var/www'
+    'HTTP_ACCEPT_LANGUAGE' => 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_HOST' => 'test-covid.loc'
+    'SCRIPT_FILENAME' => '/home/ruslan/www/test-covid/project/web/index.php'
+    'REDIRECT_STATUS' => '200'
+    'SERVER_NAME' => 'test-covid.loc'
+    'SERVER_PORT' => '80'
+    'SERVER_ADDR' => '127.0.0.1'
+    'REMOTE_PORT' => '37906'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'SERVER_SOFTWARE' => 'nginx/1.20.0'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'REQUEST_SCHEME' => 'http'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'DOCUMENT_ROOT' => '/home/ruslan/www/test-covid/project/web'
+    'DOCUMENT_URI' => '/index.php'
+    'REQUEST_URI' => '/'
+    'SCRIPT_NAME' => '/index.php'
+    'CONTENT_LENGTH' => ''
+    'CONTENT_TYPE' => ''
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'FCGI_ROLE' => 'RESPONDER'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1622476088.5629
+    'REQUEST_TIME' => 1622476088
+]
