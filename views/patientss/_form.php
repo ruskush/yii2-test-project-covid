@@ -24,7 +24,7 @@ use kartik\select2\Select2;
 
          <div class="col-sm-3">
             <label>Дата рождения</label>
-            <?
+            <?php
             echo DatePicker::widget([
                 'name' => 'Patient[birthday]', 
                 'value' => $model->birthday ? date('d-M-Y', strtotime($model->birthday)) : '',
@@ -80,7 +80,7 @@ use kartik\select2\Select2;
      <div class="row">
         <div class="col-sm-3">
             <label>Дигноз поставлен</label>
-            <?
+            <?php
             echo DatePicker::widget([
                 'name' => 'Patient[diagnosis_date]', 
                 'value' => $model->diagnosis_date ? date('d-M-Y', strtotime($model->diagnosis_date)) : '',
@@ -95,7 +95,7 @@ use kartik\select2\Select2;
 
         <div class="col-sm-3">
             <label>Дата выздоровления</label>
-            <?
+            <?php
             echo DatePicker::widget([
                 'name' => 'Patient[recovery_date]', 
                 'value' => $model->recovery_date ? date('d-M-Y', strtotime($model->recovery_date)) : '',
@@ -110,7 +110,7 @@ use kartik\select2\Select2;
 
         <div class="col-sm-3">
             <label>Дата анализа</label>
-            <?
+            <?php
             echo DatePicker::widget([
                 'name' => 'Patient[analysis_date]', 
                 'value' => $model->analysis_date ? date('d-M-Y', strtotime($model->analysis_date)) : '',

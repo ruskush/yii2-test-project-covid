@@ -6,10 +6,7 @@ use Yii;
 use app\models\Patient;
 use app\models\User;
 use app\models\PatientSearch;
-use yii\data\ActiveDataProvider;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use app\models\Polyclinics;
 use app\models\Statuses;
 use app\models\Treatments;
@@ -78,7 +75,6 @@ class PatientssController extends BaseController
         $user = User::findOne(Yii::$app->user->id);
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->birthday = $model->birthday  ? date("Y-m-d", strtotime($model->birthday)) : null;
 
             if (!Yii::$app->user->isSuperadmin) {
                 $model->polyclinic_id=$user->polyclinic_id;
@@ -116,11 +112,6 @@ class PatientssController extends BaseController
         }
 
         if ($model->load(Yii::$app->request->post())) {
-
-            $model->birthday = $model->birthday  ? date("Y-m-d", strtotime($model->birthday)) : null;
-            $model->diagnosis_date = $model->diagnosis_date  ? date("Y-m-d", strtotime($model->diagnosis_date)) : null;
-            $model->recovery_date = $model->recovery_date  ? date("Y-m-d", strtotime($model->recovery_date)) : null;
-            $model->analysis_date = $model->analysis_date  ? date("Y-m-d", strtotime($model->analysis_date)) : null;
 
             if (!Yii::$app->user->isSuperadmin) {
                 $model->polyclinic_id=$user->polyclinic_id;

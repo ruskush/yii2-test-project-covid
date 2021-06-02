@@ -2,9 +2,10 @@
 
 namespace app\models;
 
-use Yii;
+use yii\behaviors\AttributesBehavior;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "patients".
@@ -52,28 +53,47 @@ class Patient extends \yii\db\ActiveRecord {
                 'updatedAtAttribute' => 'updated',
                 'value' => date('Y-m-d H:i:s'),
             ],
-            ['class' => BlameableBehavior::class]
+            ['class' => BlameableBehavior::class],
+            [
+                'class' => AttributesBehavior::class,
+                'attributes' => [
+                    'birthday' => [
+                        ActiveRecord::EVENT_BEFORE_UPDATE => [$this, 'convertDate'],
+                        ActiveRecord::EVENT_BEFORE_INSERT => [$this, 'convertDate'],
+                    ],
+                    'diagnosis_date' => [
+                        ActiveRecord::EVENT_BEFORE_UPDATE => [$this, 'convertDate'],
+                    ],
+                    'recovery_date' => [
+                        ActiveRecord::EVENT_BEFORE_UPDATE => [$this, 'convertDate'],
+                    ],
+                    'analysis_date' => [
+                        ActiveRecord::EVENT_BEFORE_UPDATE => [$this, 'convertDate'],
+                    ],
+                ],
+            ],
         ];
     }
 
+    public function convertDate($event, $attribute) {
+        return $this->$attribute ? date('Y-m-d', strtotime($this->$attribute)) : null;
+    }
     /**
      * {@inheritdoc}
      */
     public function rules() {
         return [
-            [['birthday', 'created', 'updated', 'diagnosis_date', 'recovery_date', 'analysis_date'], 'safe'],
             [
                 [
                     'polyclinic_id',
                     'treatment_id',
                     'status_id',
                     'form_disease_id',
-                    'created_by',
-                    'updated_by',
                     'source_id',
                 ],
                 'integer',
             ],
+            [['birthday','diagnosis_date', 'recovery_date', 'analysis_date'],'default', 'value' => null],
             [['name'], 'string', 'max' => 255],
             [['phone'], 'string', 'max' => 50],
             [['address'], 'string', 'max' => 512],
@@ -111,20 +131,6 @@ class Patient extends \yii\db\ActiveRecord {
                 'skipOnError' => true,
                 'targetClass' => Treatments::className(),
                 'targetAttribute' => ['treatment_id' => 'id'],
-            ],
-            [
-                ['created_by'],
-                'exist',
-                'skipOnError' => true,
-                'targetClass' => User::className(),
-                'targetAttribute' => ['created_by' => 'id'],
-            ],
-            [
-                ['updated_by'],
-                'exist',
-                'skipOnError' => true,
-                'targetClass' => User::className(),
-                'targetAttribute' => ['updated_by' => 'id'],
             ],
         ];
     }
