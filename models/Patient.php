@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "patients".
@@ -34,42 +36,103 @@ use Yii;
  * @property User $createdBy
  * @property User $updatedBy
  */
-class Patient extends \yii\db\ActiveRecord
-{
+class Patient extends \yii\db\ActiveRecord {
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'patients';
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function rules()
-    {
+    public function behaviors() {
         return [
-            [['birthday', 'created', 'updated', 'diagnosis_date', 'recovery_date', 'analysis_date'], 'safe'],
-            [['polyclinic_id', 'treatment_id', 'status_id', 'form_disease_id', 'created_by', 'updated_by', 'source_id'], 'integer'],
-            [['name'], 'string', 'max' => 255],
-            [['phone'], 'string', 'max' => 50],
-            [['address'], 'string', 'max' => 512],
-            [['form_disease_id'], 'exist', 'skipOnError' => true, 'targetClass' => FormDiseases::className(), 'targetAttribute' => ['form_disease_id' => 'id']],
-            [['source_id'], 'exist', 'skipOnError' => true, 'targetClass' => Patient::className(), 'targetAttribute' => ['source_id' => 'id']],
-            [['polyclinic_id'], 'exist', 'skipOnError' => true, 'targetClass' => Polyclinics::className(), 'targetAttribute' => ['polyclinic_id' => 'id']],
-            [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Statuses::className(), 'targetAttribute' => ['status_id' => 'id']],
-            [['treatment_id'], 'exist', 'skipOnError' => true, 'targetClass' => Treatments::className(), 'targetAttribute' => ['treatment_id' => 'id']],
-            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
-            [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
+            [
+                'class' => TimestampBehavior::class,
+                'createdAtAttribute' => 'created',
+                'updatedAtAttribute' => 'updated',
+                'value' => date('Y-m-d H:i:s'),
+            ],
+            ['class' => BlameableBehavior::class]
         ];
     }
 
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
-    {
+    public function rules() {
+        return [
+            [['birthday', 'created', 'updated', 'diagnosis_date', 'recovery_date', 'analysis_date'], 'safe'],
+            [
+                [
+                    'polyclinic_id',
+                    'treatment_id',
+                    'status_id',
+                    'form_disease_id',
+                    'created_by',
+                    'updated_by',
+                    'source_id',
+                ],
+                'integer',
+            ],
+            [['name'], 'string', 'max' => 255],
+            [['phone'], 'string', 'max' => 50],
+            [['address'], 'string', 'max' => 512],
+            [
+                ['form_disease_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => FormDiseases::className(),
+                'targetAttribute' => ['form_disease_id' => 'id'],
+            ],
+            [
+                ['source_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Patient::className(),
+                'targetAttribute' => ['source_id' => 'id'],
+            ],
+            [
+                ['polyclinic_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Polyclinics::className(),
+                'targetAttribute' => ['polyclinic_id' => 'id'],
+            ],
+            [
+                ['status_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Statuses::className(),
+                'targetAttribute' => ['status_id' => 'id'],
+            ],
+            [
+                ['treatment_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Treatments::className(),
+                'targetAttribute' => ['treatment_id' => 'id'],
+            ],
+            [
+                ['created_by'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => User::className(),
+                'targetAttribute' => ['created_by' => 'id'],
+            ],
+            [
+                ['updated_by'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => User::className(),
+                'targetAttribute' => ['updated_by' => 'id'],
+            ],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'name' => 'ФИО',
@@ -96,8 +159,7 @@ class Patient extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getFormDisease()
-    {
+    public function getFormDisease() {
         return $this->hasOne(FormDiseases::className(), ['id' => 'form_disease_id']);
     }
 
@@ -106,8 +168,7 @@ class Patient extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getSource()
-    {
+    public function getSource() {
         return $this->hasOne(Patient::className(), ['id' => 'source_id']);
     }
 
@@ -116,8 +177,7 @@ class Patient extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getPatients()
-    {
+    public function getPatients() {
         return $this->hasMany(Patient::className(), ['source_id' => 'id']);
     }
 
@@ -126,8 +186,7 @@ class Patient extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getPolyclinic()
-    {
+    public function getPolyclinic() {
         return $this->hasOne(Polyclinics::className(), ['id' => 'polyclinic_id']);
     }
 
@@ -136,8 +195,7 @@ class Patient extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getStatus()
-    {
+    public function getStatus() {
         return $this->hasOne(Statuses::className(), ['id' => 'status_id']);
     }
 
@@ -146,8 +204,7 @@ class Patient extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getTreatment()
-    {
+    public function getTreatment() {
         return $this->hasOne(Treatments::className(), ['id' => 'treatment_id']);
     }
 
@@ -156,8 +213,7 @@ class Patient extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getCreatedBy()
-    {
+    public function getCreatedBy() {
         return $this->hasOne(User::className(), ['id' => 'created_by']);
     }
 
@@ -166,8 +222,7 @@ class Patient extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getUpdatedBy()
-    {
+    public function getUpdatedBy() {
         return $this->hasOne(User::className(), ['id' => 'updated_by']);
     }
 }

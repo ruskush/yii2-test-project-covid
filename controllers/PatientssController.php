@@ -78,10 +78,6 @@ class PatientssController extends BaseController
         $user = User::findOne(Yii::$app->user->id);
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->created = date("Y-m-d H:i:s");
-            $model->updated = date("Y-m-d H:i:s");
-            $model->created_by = \Yii::$app->user->id;
-            $model->updated_by = \Yii::$app->user->id;
             $model->birthday = $model->birthday  ? date("Y-m-d", strtotime($model->birthday)) : null;
 
             if (!Yii::$app->user->isSuperadmin) {
@@ -119,9 +115,7 @@ class PatientssController extends BaseController
             throw new NotFoundHttpException('The requested page does not exist.');
         }
 
-        if ($model->load(Yii::$app->request->post())) { 
-            $model->updated = date("Y-m-d H:i:s");
-            $model->updated_by = \Yii::$app->user->id;
+        if ($model->load(Yii::$app->request->post())) {
 
             $model->birthday = $model->birthday  ? date("Y-m-d", strtotime($model->birthday)) : null;
             $model->diagnosis_date = $model->diagnosis_date  ? date("Y-m-d", strtotime($model->diagnosis_date)) : null;
