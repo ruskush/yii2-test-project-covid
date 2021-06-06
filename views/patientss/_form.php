@@ -27,10 +27,10 @@ use kartik\select2\Select2;
             <?php
             echo DatePicker::widget([
                 'name' => 'Patient[birthday]', 
-                'value' => $model->birthday ? date('d-M-Y', strtotime($model->birthday)) : '',
+                'value' => $model->birthday ? date('d.m.Y', strtotime($model->birthday)) : '',
                 'options' => ['placeholder' => 'Выберите дату'],
                 'pluginOptions' => [
-                    'format' => 'dd-M-yyyy',
+                    'format' => 'dd.mm.yyyy',
                     'todayHighlight' => true
                 ]
             ]);    
@@ -83,10 +83,10 @@ use kartik\select2\Select2;
             <?php
             echo DatePicker::widget([
                 'name' => 'Patient[diagnosis_date]', 
-                'value' => $model->diagnosis_date ? date('d-M-Y', strtotime($model->diagnosis_date)) : '',
+                'value' => $model->diagnosis_date ? date('d.m.Y', strtotime($model->diagnosis_date)) : '',
                 'options' => ['placeholder' => 'Выберите дату'],
                 'pluginOptions' => [
-                    'format' => 'dd-M-yyyy',
+                    'format' => 'dd.mm.yyyy',
                     'todayHighlight' => true
                 ]
             ]);    
@@ -98,10 +98,10 @@ use kartik\select2\Select2;
             <?php
             echo DatePicker::widget([
                 'name' => 'Patient[recovery_date]', 
-                'value' => $model->recovery_date ? date('d-M-Y', strtotime($model->recovery_date)) : '',
+                'value' => $model->recovery_date ? date('d.m.Y', strtotime($model->recovery_date)) : '',
                 'options' => ['placeholder' => 'Выберите дату'],
                 'pluginOptions' => [
-                    'format' => 'dd-M-yyyy',
+                    'format' => 'dd.mm.yyyy',
                     'todayHighlight' => true
                 ]
             ]);    
@@ -113,10 +113,10 @@ use kartik\select2\Select2;
             <?php
             echo DatePicker::widget([
                 'name' => 'Patient[analysis_date]', 
-                'value' => $model->analysis_date ? date('d-M-Y', strtotime($model->analysis_date)) : '',
+                'value' => $model->analysis_date ? date('d.m.Y', strtotime($model->analysis_date)) : '',
                 'options' => ['placeholder' => 'Выберите дату'],
                 'pluginOptions' => [
-                    'format' => 'dd-M-yyyy',
+                    'format' => 'dd.mm.yyyy',
                     'todayHighlight' => true
                 ]
             ]);    

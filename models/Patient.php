@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use Yii;
 use yii\behaviors\AttributesBehavior;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -70,6 +71,17 @@ class Patient extends \yii\db\ActiveRecord {
                     'analysis_date' => [
                         ActiveRecord::EVENT_BEFORE_UPDATE => [$this, 'convertDate'],
                     ],
+                    'polyclinic_id' => [
+                        ActiveRecord::EVENT_BEFORE_INSERT => ($fn = function ($event, $attribute) {
+                            $value = $this->polyclinic_id;
+                            if (!Yii::$app->user->isSuperadmin) {
+                                $user = User::findOne(Yii::$app->user->id);
+                                $value = $user->polyclinic->id;
+                            }
+                            return $value;
+                        }),
+                        ActiveRecord::EVENT_BEFORE_UPDATE => $fn,
+                    ],
                 ],
             ],
         ];
@@ -83,17 +95,21 @@ class Patient extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
+            [['polyclinic_id', 'treatment_id', 'status_id', 'form_disease_id', 'source_id'], 'integer'],
             [
                 [
-                    'polyclinic_id',
-                    'treatment_id',
+                    'birthday',
+                    'diagnosis_date',
+                    'recovery_date',
+                    'analysis_date',
                     'status_id',
                     'form_disease_id',
-                    'source_id',
+                    'treatment_id',
                 ],
-                'integer',
+                'default',
+                'value' => null,
             ],
-            [['birthday','diagnosis_date', 'recovery_date', 'analysis_date'],'default', 'value' => null],
+            [['birthday', 'diagnosis_date', 'recovery_date', 'analysis_date'], 'date', 'format' => 'd.m.Y'],
             [['name'], 'string', 'max' => 255],
             [['phone'], 'string', 'max' => 50],
             [['address'], 'string', 'max' => 512],

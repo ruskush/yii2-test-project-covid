@@ -2,11 +2,13 @@
 
 namespace app\controllers;
 
+use app\components\CreateModelSerializer;
 use app\models\resource\Patient;
 use app\models\PatientSearch;
 use Yii;
 use yii\filters\auth\HttpBearerAuth;
 use yii\rest\Controller;
+use yii\rest\CreateAction;
 use yii\rest\IndexAction;
 use yii\rest\Serializer;
 
@@ -16,6 +18,20 @@ class PatientssApiController extends Controller {
         'class' => Serializer::class,
         'collectionEnvelope' => 'items',
     ];
+
+    public function verbs() {
+        return [
+            'index' => ['get'],
+            'create' => ['post'],
+        ];
+    }
+
+    public function beforeAction($action) {
+        if ($action->id === 'create') {
+            $this->serializer = CreateModelSerializer::class;
+        }
+        return parent::beforeAction($action);
+    }
 
     public function behaviors() {
         $behaviors = parent::behaviors();
@@ -37,6 +53,10 @@ class PatientssApiController extends Controller {
                     $searchModel = new PatientSearch(['modelClass' => $this->modelClass]);
                     return $searchModel->search(Yii::$app->request->get());
                 },
+            ],
+            'create' => [
+                'class' => CreateAction::class,
+                'modelClass' => $this->modelClass,
             ],
         ];
     }

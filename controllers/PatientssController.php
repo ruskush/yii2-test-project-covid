@@ -55,7 +55,7 @@ class PatientssController extends BaseController
         $model = Patient::find()->where(["id"=>$id])->with(["status", "polyclinic", "treatment", "formDisease", "updatedBy", "createdBy", "source", "patients"])->one();
 
         if (!$model) {
-            throw new NotFoundHttpException('The requested page does not exist.');            
+            throw new NotFoundHttpException('The requested page does not exist.');
         }
 
         return $this->render('view', [
@@ -68,18 +68,10 @@ class PatientssController extends BaseController
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
+    public function actionCreate() {
         $model = new Patient();
 
-        $user = User::findOne(Yii::$app->user->id);
-
         if ($model->load(Yii::$app->request->post())) {
-
-            if (!Yii::$app->user->isSuperadmin) {
-                $model->polyclinic_id=$user->polyclinic_id;
-            }
-
             if ($model->save()) {
                 return $this->redirect(['index']);
             }
@@ -102,22 +94,16 @@ class PatientssController extends BaseController
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
-    {
+    public function actionUpdate($id) {
         $model = $this->findModel($id);
         $user = User::findOne(Yii::$app->user->id);
 
-        if (!Yii::$app->user->isSuperadmin && $model->polyclinic_id!=$user->polyclinic_id) {
+        if (!Yii::$app->user->isSuperadmin && $model->polyclinic_id != $user->polyclinic_id) {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
 
         if ($model->load(Yii::$app->request->post())) {
-
-            if (!Yii::$app->user->isSuperadmin) {
-                $model->polyclinic_id=$user->polyclinic_id;
-            }
-
-            if  ($model->save()) {
+            if ($model->save()) {
                 return $this->redirect(['index']);
             }
         }

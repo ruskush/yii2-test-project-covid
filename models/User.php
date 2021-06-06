@@ -5,7 +5,6 @@ namespace app\models;
 use webvimark\helpers\LittleBigHelper;
 use webvimark\helpers\Singleton;
 use webvimark\modules\UserManagement\components\AuthHelper;
-use webvimark\modules\UserManagement\components\UserIdentity;
 use webvimark\modules\UserManagement\models\rbacDB\Role;
 use webvimark\modules\UserManagement\models\rbacDB\Route;
 use webvimark\modules\UserManagement\UserManagementModule;
@@ -28,6 +27,8 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $superadmin
  * @property integer $created_at
  * @property integer $updated_at
+ *
+ * @property Polyclinics $polyclinic
  */
 class User extends \webvimark\modules\UserManagement\models\User
 {
